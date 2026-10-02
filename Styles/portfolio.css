@@ -19,6 +19,15 @@
     object-fit: cover;
 }
 
+.design-card {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+}
+
 .design-artwork {
     aspect-ratio: 4 / 3;
     display: grid;
@@ -28,6 +37,13 @@
     background:
         radial-gradient(ellipse at 75% 25%, rgba(13, 110, 253, .42), transparent 40%),
         linear-gradient(135deg, #202b3a, #111820 65%);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.design-card:hover .design-artwork,
+.design-card:focus-visible .design-artwork {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
 .design-artwork::before {
@@ -38,6 +54,104 @@
     border: 1px solid rgba(255, 255, 255, .18);
     border-radius: 50%;
     transform: translate(38%, -20%);
+}
+
+.design-artwork img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.wordmark-artwork {
+    background: transparent;
+    box-shadow: none;
+}
+
+.wordmark-artwork::before {
+    display: none;
+}
+
+.wordmark-artwork img {
+    object-fit: contain;
+    background: transparent;
+}
+
+.design-lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1.5rem;
+}
+
+.design-lightbox.is-visible {
+    display: flex;
+}
+
+.design-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.design-lightbox-panel {
+    position: relative;
+    z-index: 1;
+    background: rgba(17, 24, 32, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    width: min(96vw, 1200px);
+    max-height: 92vh;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+.design-lightbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem 0.5rem;
+}
+
+.design-lightbox-header h5 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.design-lightbox-close {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    border: 0;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 0 0.25rem;
+    cursor: pointer;
+}
+
+.design-lightbox-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem 1rem;
+    max-height: calc(92vh - 76px);
+    overflow: auto;
+}
+
+.design-modal-image {
+    display: block;
+    max-width: 100%;
+    max-height: calc(92vh - 76px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 0.75rem;
 }
 
 .design-artwork span {
